@@ -9,35 +9,35 @@ export class PokemonService {
   constructor (private http: HttpClient){}
 
   getPOkemonList(): Observable <Pokemon[]>{
-    return this.http.get<Pokemon[]>('http://localhost:3005/pokemon/getall').pipe(
+    return this.http.get<Pokemon[]>('http://localhost:3000/pokemon/getall').pipe(
       tap(response => this.log(response)),
       catchError((error)=> this.handleError(error, []))
       );
   }
 
   getPokemonById(pokemonId: number): Observable<Pokemon|undefined> {
-    return this.http.get<Pokemon>(`http://localhost:3005/pokemon/get/${pokemonId}` ).pipe(
+    return this.http.get<Pokemon>(`http://localhost:3000/pokemon/get/${pokemonId}` ).pipe(
       tap((response)=> console.log(response)),
       catchError((error)=> this.handleError(error, undefined))
     );
   }
 
   updatePokemon(pokemon: Pokemon): Observable<Pokemon| undefined>{
-    return this.http.put<Pokemon>(`http://localhost:3005/pokemon/update/${pokemon.id}`, pokemon).pipe(
+    return this.http.put<Pokemon>(`http://localhost:3000/pokemon/update/${pokemon.id}`, pokemon).pipe(
       tap((response)=> console.log(response)),
       catchError((error)=> this.handleError(error, undefined))
     );
   }
 
   deletePokemon(pokemon: Pokemon): Observable<Pokemon| undefined>{
-    return this.http.delete<Pokemon>(`http://localhost:3005/pokemon/delete/${pokemon.id}`).pipe(
+    return this.http.delete<Pokemon>(`http://localhost:3000/pokemon/delete/${pokemon.id}`).pipe(
       tap((response)=> console.log(response)),
       catchError((error)=> this.handleError(error, undefined))
     );
   }
 
   createPokemon(pokemon: Pokemon): Observable<Pokemon>{
-    return this.http.post<Pokemon>(`http://localhost:3005/pokemon/create`, pokemon).pipe(
+    return this.http.post<Pokemon>(`http://localhost:3000/pokemon/create`, pokemon).pipe(
       tap((response)=> console.log(response)),
       catchError((error)=> this.handleError(error, undefined))
     );
